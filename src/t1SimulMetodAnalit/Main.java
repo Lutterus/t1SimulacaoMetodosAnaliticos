@@ -8,7 +8,7 @@ public class Main {
 		NumerosPseudoAleatorios numerosPseudoAleatorios = new NumerosPseudoAleatorios();
 		
 		double numero = numerosPseudoAleatorios.getNumero();
-		//System.out.println("numero unico gerado: " + numero);
+		System.out.println("numero unico gerado: " + numero);
 		
 		ArrayList<Double> sequenciaDeNumeros = numerosPseudoAleatorios.getNumeros(1000);
 		for (Double double1 : sequenciaDeNumeros) {
