@@ -101,7 +101,7 @@ public class FilaSimples {
 		double quantoTempoSePassou = tempoGlobalAtual - tempoGlobalAnterior;
 		if (tipo.contentEquals("CHEGADA")) {
 			vetorFila[ponteiroDaFila] = vetorFila[ponteiroDaFila] + quantoTempoSePassou;
-			if (ponteiroDaFila < capacidadeDaFila) {
+			if (ponteiroDaFila < vetorFila.length-1) {
 				ponteiroDaFila++;
 			}
 
