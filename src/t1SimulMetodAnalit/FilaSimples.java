@@ -127,7 +127,7 @@ public class FilaSimples {
 	}
 
 	public boolean existeAlguemParaSerAtendido() {
-		if (ponteiroDaFila >= 0) {
+		if (ponteiroDaFila > 0) {
 			return true;
 		} else {
 			return false;
@@ -208,5 +208,9 @@ public class FilaSimples {
 		tempoGlobal = 0;
 		// reseta o ponteiro da fila
 		ponteiroDaFila = 0;
+	}
+
+	public int getPonteiro() {
+		return ponteiroDaFila;
 	}
 }

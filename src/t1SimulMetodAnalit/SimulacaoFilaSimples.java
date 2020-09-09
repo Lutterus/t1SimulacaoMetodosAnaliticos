@@ -28,7 +28,7 @@ public class SimulacaoFilaSimples {
 				if (evento != null) {
 					// se for uma chegada
 					if (evento.getTipo().contentEquals("CHEGADA")) {
-						lidarComChegadas(evento);
+						lidarComChegadas(evento, 1);
 
 						// se for uma saida
 					} else {
@@ -36,8 +36,25 @@ public class SimulacaoFilaSimples {
 					}
 				}
 			}
+
+			// limpa o resto da fila
+			Evento evento2 = escalonador.getProximoEvento();
+			while (evento2 != null) {
+				// atualiza o tempo da execucao
+				contabilizaTempoGlobal(evento2.getTempoGlobal());
+
+				if (evento2.getTipo().contentEquals("CHEGADA")) {
+					lidarComChegadas(evento2, 0);
+
+					// se for uma saida
+				} else {
+					lidarComSaidas(evento2);
+				}
+				evento2 = escalonador.getProximoEvento();
+			}
 			// printa o resultado da execucao
 			filaSimples.print();
+			// reseta o escalonador
 			escalonador = new Escalonador(filaSimples);
 		}
 		// finalizou a execucao, guarda o resultado
@@ -55,7 +72,7 @@ public class SimulacaoFilaSimples {
 		}
 	}
 
-	private void lidarComChegadas(Evento evento) {
+	private void lidarComChegadas(Evento evento, int i) {
 		// verifica se possui espaco na fila
 		if (filaSimples.possuiEspaco()) {
 			// fila++
@@ -72,8 +89,9 @@ public class SimulacaoFilaSimples {
 			filaSimples.contabilizaTempo(evento.getTempoGlobal(), evento.getTipo());
 		}
 		// sempre agenda chegada
-		escalonador.agendaChegada(filaSimples.getChegadaMIN(), filaSimples.getChegadaMAX(), filaSimples.getTempo());
-
+		if (i == 1) {
+			escalonador.agendaChegada(filaSimples.getChegadaMIN(), filaSimples.getChegadaMAX(), filaSimples.getTempo());
+		}
 	}
 
 	private void contabilizaTempoGlobal(double tempo) {

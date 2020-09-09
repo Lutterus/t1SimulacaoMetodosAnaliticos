@@ -48,7 +48,6 @@ public class Escalonador {
 				}
 				i++;
 			}
-			;
 			return index;
 		}
 	}
